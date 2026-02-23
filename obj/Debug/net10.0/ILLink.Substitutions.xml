@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="PCL_CourseAssignment">
+    <resource name="FSharpSignatureData.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpOptimizationData.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.PCL_CourseAssignment" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.PCL_CourseAssignment" action="remove"></resource>
+  </assembly>
+</linker>

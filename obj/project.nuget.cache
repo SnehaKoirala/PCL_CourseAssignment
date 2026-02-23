@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "x8cYzzEywqY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\shankar\\OneDrive - ViaUC\\Desktop\\SEMESTER6\\PCL1\\CourseAssignment\\PCL_CourseAssignment\\PCL_CourseAssignment.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\shankar\\.nuget\\packages\\fsharp.core\\10.0.102\\fsharp.core.10.0.102.nupkg.sha512"
+  ],
+  "logs": []
+}
