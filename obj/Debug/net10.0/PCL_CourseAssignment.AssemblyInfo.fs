@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("PCL_CourseAssignment")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6090ae40735e298097f82ae77793ef439fcb6fe7")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9eb26776f53933b5f187b1da42d27890705aa3e0")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("PCL_CourseAssignment")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("PCL_CourseAssignment")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

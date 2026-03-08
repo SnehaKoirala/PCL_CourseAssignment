@@ -161,4 +161,95 @@ let myFood = Sandwich {SandwichType = ChickenSandwich; Size = Large}
 printfn"The price of my sandwich is: %.2fkr" (float (calculateFoodPrice myFood))
 
 let myFruit = Orange
-printfn "The price of my fruit is: %.2fkr" (float (calculateFruitPrice myFruit))
+printfn "The price of my fruit is: %.2fkr" (float (calculateFruitPrice myFruit)) 
+
+
+//// Assignment 2 //////
+
+// Customer types
+type Customer = 
+    | VIAStudent
+    | VIAStaff
+    | Guest
+
+// Payment methods
+type Payment = 
+    | ViaCard
+    | CreditCard
+    | MobilePay
+
+// Order record
+type Order = {
+    Customer : Customer
+    Payment : Payment
+}
+
+// VAT function
+let gtgVAT n x =
+    x + (x * float n / 100.0)
+
+
+// Message type for the actor
+type OrderDrinkMsg =
+    | OrderDrink of Drink * int
+    | LeaveComment of string
+
+
+// Agent / Actor
+let gtgAgent =
+    MailboxProcessor.Start(fun inbox ->
+
+        let rec loop () =
+            async {
+
+                // receive message
+                let! msg = inbox.Receive()
+
+                match msg with
+
+                // Order drink
+                | OrderDrink (drink, qty) ->
+
+                    let basePrice = calculateDrinkPrice drink
+                    let totalPrice = basePrice * float qty
+
+                    match drink with
+                    | Coffee c ->
+
+                        // apply VAT only for coffee
+                        let finalPrice = gtgVAT 25 totalPrice
+
+                        printfn
+                          "Please pay DKK%.2f for your %d %A coffee drinks. Thanks!"
+                          finalPrice qty c.CoffeeType
+
+                    | _ ->
+
+                        printfn
+                          "Please pay DKK%.2f for your %d drinks. Thanks!"
+                          totalPrice qty
+
+
+                // Comment message
+                | LeaveComment comment ->
+
+                    printfn "Thanks for your comment: \"%s\". We appreciate your feedback!" comment
+
+
+                return! loop()
+            }
+
+        loop ()
+    )
+
+
+// Example order
+let myDrinkOrder =
+    Coffee { CoffeeType = Latte; Size = Small }
+
+
+// Send message to actor
+gtgAgent.Post(OrderDrink(myDrinkOrder, 2))
+
+// Send comment
+gtgAgent.Post(LeaveComment("Great coffee!"))
