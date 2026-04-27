@@ -1,3 +1,4 @@
+//Assignment 1 
 type Size = 
     | Small
     | Medium
@@ -192,22 +193,21 @@ let gtgVAT n x =
 // Message type for the actor
 type OrderDrinkMsg =
     | OrderDrink of Drink * int
+    | OrderFood of Food * int
     | LeaveComment of string
 
 
-// Agent / Actor
+// Actor
 let gtgAgent =
     MailboxProcessor.Start(fun inbox ->
 
         let rec loop () =
             async {
 
-                // receive message
                 let! msg = inbox.Receive()
 
                 match msg with
 
-                // Order drink
                 | OrderDrink (drink, qty) ->
 
                     let basePrice = calculateDrinkPrice drink
@@ -216,7 +216,6 @@ let gtgAgent =
                     match drink with
                     | Coffee c ->
 
-                        // apply VAT only for coffee
                         let finalPrice = gtgVAT 25 totalPrice
 
                         printfn
@@ -228,9 +227,27 @@ let gtgAgent =
                         printfn
                           "Please pay DKK%.2f for your %d drinks. Thanks!"
                           totalPrice qty
+                 | OrderFood (food, qty) ->
+                    let basePrice = calculateFoodPrice food
+                    let totalPrice = basePrice * float qty
 
+                    match food with
+                    | Sandwich s ->
+                        let finalPrice = gtgVAT 25 totalPrice
+                        printfn
+                          "Please pay DKK%.2f for your %d %A sandwiches. Thanks!"
+                          finalPrice qty s.SandwichType
+                    | Salad sa ->
+                        let finalPrice = gtgVAT 25 totalPrice
+                        printfn
+                          "Please pay DKK%.2f for your %d %A salads. Thanks!"
+                          finalPrice qty sa.SaladType
+                    | Soup sp ->
+                        let finalPrice = gtgVAT 25 totalPrice
+                        printfn
+                          "Please pay DKK%.2f for your %d %A soups. Thanks!"
+                          finalPrice qty sp.SoupType
 
-                // Comment message
                 | LeaveComment comment ->
 
                     printfn "Thanks for your comment: \"%s\". We appreciate your feedback!" comment
@@ -243,13 +260,11 @@ let gtgAgent =
     )
 
 
-// Example order
 let myDrinkOrder =
     Coffee { CoffeeType = Latte; Size = Small }
-
-
-// Send message to actor
 gtgAgent.Post(OrderDrink(myDrinkOrder, 2))
 
-// Send comment
+let myFoodOrder = Sandwich { SandwichType = ChickenSandwich; Size = Large }
+gtgAgent.Post(OrderFood(myFoodOrder, 1))
+
 gtgAgent.Post(LeaveComment("Great coffee!"))
