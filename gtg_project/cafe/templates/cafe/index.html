@@ -1,0 +1,10 @@
+<h1>GTG Café Menu</h1>
+
+<ul>
+  {% for p in products %}
+    <li>
+      {{ p.name }} - {{ p.price }} DKK ({{ p.category }})
+      <a href="/order/{{ p.id }}/">Order</a>
+    </li>
+  {% endfor %}
+</ul>

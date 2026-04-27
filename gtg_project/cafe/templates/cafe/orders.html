@@ -1,0 +1,9 @@
+<h1>Orders</h1>
+
+<ul>
+  {% for o in orders %}
+    <li>
+      {{ o.product.name }} x {{ o.quantity }} = {{ o.total_price }} DKK
+    </li>
+  {% endfor %}
+</ul>
