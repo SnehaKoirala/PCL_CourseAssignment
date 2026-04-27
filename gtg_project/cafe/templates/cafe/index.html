@@ -1,10 +1,60 @@
-<h1>GTG Café Menu</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GTG Café</title>
 
-<ul>
-  {% for p in products %}
-    <li>
-      {{ p.name }} - {{ p.price }} DKK ({{ p.category }})
-      <a href="/order/{{ p.id }}/">Order</a>
-    </li>
-  {% endfor %}
-</ul>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: gray;
+        }
+
+        .admin-btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .admin-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Welcome to GTG Café</h1>
+    <p>Order management is handled through the admin panel.</p>
+
+    <!-- Change link if your admin URL is different -->
+    <a href="/admin" class="admin-btn">Go to Admin Panel</a>
+</div>
+
+</body>
+</html>
